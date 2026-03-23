@@ -248,7 +248,4 @@ python .\inline_inject.py
 
 ## License
 
-如果计划对外开源发布，建议补充自己的 License，例如：
-
-- MIT
-- Apache-2.0
+This project is licensed under Apache-2.0.
