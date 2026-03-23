@@ -13,12 +13,8 @@
 
 ## 软件截图
 
-`README.md` 完全可以放软件截图，推荐把截图文件放到仓库内的 `docs/images/` 目录，再用 Markdown 图片语法引用。
-
-示例：
-
 ```md
-![CPA Sentinel Panel](docs/images/cpa-sentinel-panel.png)
+![CPA Sentinel Panel](./docs/images/cpa-sentinel-panel.png)
 ```
 
 如果你后面给我一张正式截图，我可以再帮你把这一段直接替换成最终展示版本。
