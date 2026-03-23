@@ -1,5 +1,7 @@
 # CPA Sentinel
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+
 `CPA Sentinel` 是一个面向 `CLIProxyAPI / CPAMC` 管理后台的可视化巡检插件。
 
 它会在管理页左侧注入一个悬浮入口，打开后提供统一的巡检与健康托管面板，覆盖两类核心场景：
@@ -8,6 +10,18 @@
 - 认证文件巡检与自动清理
 
 适合用于多服务商、多认证文件场景下的日常巡检、异常排查和状态管理。
+
+## 软件截图
+
+`README.md` 完全可以放软件截图，推荐把截图文件放到仓库内的 `docs/images/` 目录，再用 Markdown 图片语法引用。
+
+示例：
+
+```md
+![CPA Sentinel Panel](docs/images/cpa-sentinel-panel.png)
+```
+
+如果你后面给我一张正式截图，我可以再帮你把这一段直接替换成最终展示版本。
 
 ## 功能概览
 
@@ -248,4 +262,7 @@ python .\inline_inject.py
 
 ## License
 
-This project is licensed under Apache-2.0.
+如果计划对外开源发布，建议补充自己的 License，例如：
+
+- MIT
+- Apache-2.0
