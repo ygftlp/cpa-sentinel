@@ -11,6 +11,11 @@
 
 适合用于多服务商、多认证文件场景下的日常巡检、异常排查和状态管理。
 
+适配版本：
+
+- CPA（CliProxyAPI）版本：`6.8.55`
+- 下载地址：[CLIProxyAPI Releases](https://github.com/router-for-me/CLIProxyAPI/releases)
+
 ## 软件截图
 
 `README.md` 完全可以放软件截图，推荐把截图文件放到仓库内的 `docs/images/` 目录，再用 Markdown 图片语法引用。
@@ -268,4 +273,3 @@ python .\inline_inject.py
 - 对应服务商管理接口
 
 如果目标环境接口结构不同，可能需要按实际字段调整。
-
