@@ -80,6 +80,8 @@
   管理后台页面，插件最终以内联脚本形式注入到该页面
 - `inline_inject.py`
   用于将 `auto_check.js` 内联注入到 `management.html`
+- `uninstall_inject.py`
+  用于从 `management.html` 中移除已注入的 CPA Sentinel 脚本
 - `readme.m`
   对外介绍版文档
 
@@ -101,6 +103,7 @@ python .\inline_inject.py
 - `auto_check.js`
 - `management.html`
 - `inline_inject.py`
+- `uninstall_inject.py`
 - `README.md`
 - `readme.m`
 
@@ -129,6 +132,16 @@ python .\inline_inject.py
 - 插件按钮不显示
 - 脚本未生效
 - 外链资源路径失效
+
+## 卸载方式
+
+如果需要卸载插件，可执行：
+
+```powershell
+python .\uninstall_inject.py
+```
+
+执行完成后刷新 `management.html`，即可移除已注入的插件脚本。
 
 ## 使用说明
 

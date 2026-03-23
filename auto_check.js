@@ -825,7 +825,7 @@
   }
 
   function updateToolVisibility() {
-    const visible = !isLoginRoute() && !hasLoginForm();
+    const visible = hasManagementShell() || (!isLoginRoute() && !hasLoginForm());
     btn.style.display = visible ? 'block' : 'none';
     if (!visible) modal.classList.remove('show');
   }
