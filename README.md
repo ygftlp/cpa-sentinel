@@ -269,9 +269,3 @@ python .\inline_inject.py
 
 如果目标环境接口结构不同，可能需要按实际字段调整。
 
-## License
-
-如果计划对外开源发布，建议补充自己的 License，例如：
-
-- MIT
-- Apache-2.0
