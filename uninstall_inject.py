@@ -1,9 +1,11 @@
 import codecs
 import re
+from pathlib import Path
 
-html_path = 'd:/Ai/CPA/CLIProxyAPI_6.8.55_windows_amd64/static/management.html'
+BASE_DIR = Path(__file__).resolve().parent
+html_path = BASE_DIR / 'management.html'
 
-with codecs.open(html_path, 'r', 'utf-8') as f:
+with codecs.open(str(html_path), 'r', 'utf-8') as f:
     html_content = f.read()
 
 # Remove inline injected plugin script
@@ -21,7 +23,7 @@ html_content = re.sub(
     html_content
 )
 
-with codecs.open(html_path, 'w', 'utf-8') as f:
+with codecs.open(str(html_path), 'w', 'utf-8') as f:
     f.write(html_content)
 
 print("Successfully removed CPA Sentinel injection from management.html")

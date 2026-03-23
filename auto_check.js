@@ -185,8 +185,14 @@
 
     /* 内部两个区域 */
     .cpamc-body { display: flex; flex: 1; overflow: hidden; background: #f6f9fc; }
-    .cpamc-section { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; }
+    .cpamc-section { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; position: relative; }
     .cpamc-section:first-child { border-right: 1px solid #e6edf6; }
+    .cpamc-section-tools {
+      position: sticky; top: -16px; z-index: 4;
+      margin: -16px -16px 12px; padding: 16px 16px 12px;
+      background: linear-gradient(180deg, #f6f9fc 0%, #f6f9fc 82%, rgba(246,249,252,0.92) 100%);
+      backdrop-filter: blur(6px);
+    }
 
     .cpamc-section-header {
       display: flex; justify-content: space-between; align-items: center;
@@ -264,7 +270,7 @@
       cursor: not-allowed; opacity: 0.55; box-shadow: none;
     }
     .cpamc-auto-panel {
-      margin: 0 0 12px; padding: 10px 12px; border: 1px solid #dfe7f1; border-radius: 14px;
+      margin: 0; padding: 10px 12px; border: 1px solid #dfe7f1; border-radius: 14px;
       background: #fff;
       box-shadow: 0 4px 14px rgba(15,23,42,0.04);
     }
@@ -383,70 +389,74 @@
       <div class="cpamc-body">
         <!-- 左侧：AI 供应商 -->
         <div class="cpamc-section">
-          <div class="cpamc-section-header">
-            <div class="cpamc-section-heading">
-              <h3>AI 服务商检查</h3>
-              <span class="cpamc-section-subtitle">统一管理探活、停用与恢复，减少手动干预。</span>
-            </div>
-          </div>
-          <div class="cpamc-auto-panel">
-            <div class="cpamc-auto-row cpamc-auto-row-head">
-              <div class="cpamc-auto-main">
-                <span class="cpamc-auto-status stopped" id="cpamc-provider-auto-status">已停止</span>
-                <label class="cpamc-auto-toggle cpamc-auto-toggle-wide" for="cpamc-auto-manage-provider-health">
-                  <input type="checkbox" id="cpamc-auto-manage-provider-health" />
-                  <span>健康托管 <small>失败自动停用，恢复后自动启用</small></span>
-                </label>
-                <label class="cpamc-auto-field">
-                  <span>间隔</span>
-                  <input type="number" id="cpamc-provider-auto-scan-interval" min="10" max="3600" step="1" />
-                </label>
-                <label class="cpamc-auto-field">
-                  <span>线程</span>
-                  <input type="number" id="cpamc-provider-auto-scan-concurrency" min="1" max="10" step="1" />
-                </label>
-              </div>
-              <div class="cpamc-auto-actions">
-                <button class="cpamc-btn default" id="btn-refresh-providers">刷新列表</button>
-                <button class="cpamc-btn success" id="btn-provider-auto-scan-toggle">启动</button>
+          <div class="cpamc-section-tools">
+            <div class="cpamc-section-header">
+              <div class="cpamc-section-heading">
+                <h3>AI 服务商检查</h3>
+                <span class="cpamc-section-subtitle">统一管理探活、停用与恢复，减少手动干预。</span>
               </div>
             </div>
-            <div class="cpamc-auto-hint" id="cpamc-provider-auto-hint">服务商状态会异步回填到列表卡片，适合长时间后台巡检。</div>
+            <div class="cpamc-auto-panel">
+              <div class="cpamc-auto-row cpamc-auto-row-head">
+                <div class="cpamc-auto-main">
+                  <span class="cpamc-auto-status stopped" id="cpamc-provider-auto-status">已停止</span>
+                  <label class="cpamc-auto-toggle cpamc-auto-toggle-wide" for="cpamc-auto-manage-provider-health">
+                    <input type="checkbox" id="cpamc-auto-manage-provider-health" />
+                    <span>健康托管 <small>失败自动停用，恢复后自动启用</small></span>
+                  </label>
+                  <label class="cpamc-auto-field">
+                    <span>间隔</span>
+                    <input type="number" id="cpamc-provider-auto-scan-interval" min="10" max="3600" step="1" />
+                  </label>
+                  <label class="cpamc-auto-field">
+                    <span>线程</span>
+                    <input type="number" id="cpamc-provider-auto-scan-concurrency" min="1" max="10" step="1" />
+                  </label>
+                </div>
+                <div class="cpamc-auto-actions">
+                  <button class="cpamc-btn default" id="btn-refresh-providers">刷新列表</button>
+                  <button class="cpamc-btn success" id="btn-provider-auto-scan-toggle">启动</button>
+                </div>
+              </div>
+              <div class="cpamc-auto-hint" id="cpamc-provider-auto-hint">服务商状态会异步回填到列表卡片，适合长时间后台巡检。</div>
+            </div>
           </div>
           <div class="cpamc-list" id="list-providers"></div>
         </div>
         
         <!-- 右侧：认证文件 -->
         <div class="cpamc-section">
-          <div class="cpamc-section-header">
-            <div class="cpamc-section-heading">
-              <h3>认证文件检查</h3>
-              <span class="cpamc-section-subtitle">按设定节奏验证认证有效性，并决定是否自动清理。</span>
-            </div>
-          </div>
-          <div class="cpamc-auto-panel">
-            <div class="cpamc-auto-row cpamc-auto-row-head">
-              <div class="cpamc-auto-main">
-                <span class="cpamc-auto-status stopped" id="cpamc-auto-scan-status">已停止</span>
-                <label class="cpamc-auto-toggle cpamc-auto-toggle-wide" for="cpamc-auto-evict-invalid-auth">
-                  <input type="checkbox" id="cpamc-auto-evict-invalid-auth" />
-                  <span>自动清理 <small>扫描失败后直接移除无效认证</small></span>
-                </label>
-                <label class="cpamc-auto-field">
-                  <span>间隔</span>
-                  <input type="number" id="cpamc-auto-scan-interval" min="10" max="3600" step="1" />
-                </label>
-                <label class="cpamc-auto-field">
-                  <span>线程</span>
-                  <input type="number" id="cpamc-auto-scan-concurrency" min="1" max="10" step="1" />
-                </label>
-              </div>
-              <div class="cpamc-auto-actions">
-                <button class="cpamc-btn default" id="btn-refresh-auth">刷新列表</button>
-                <button class="cpamc-btn success" id="btn-auto-scan-toggle">启动</button>
+          <div class="cpamc-section-tools">
+            <div class="cpamc-section-header">
+              <div class="cpamc-section-heading">
+                <h3>认证文件检查</h3>
+                <span class="cpamc-section-subtitle">按设定节奏验证认证有效性，并决定是否自动清理。</span>
               </div>
             </div>
-            <div class="cpamc-auto-hint" id="cpamc-auto-scan-hint">认证文件会按照设定并发自动检查，可选择是否自动清理异常项。</div>
+            <div class="cpamc-auto-panel">
+              <div class="cpamc-auto-row cpamc-auto-row-head">
+                <div class="cpamc-auto-main">
+                  <span class="cpamc-auto-status stopped" id="cpamc-auto-scan-status">已停止</span>
+                  <label class="cpamc-auto-toggle cpamc-auto-toggle-wide" for="cpamc-auto-evict-invalid-auth">
+                    <input type="checkbox" id="cpamc-auto-evict-invalid-auth" />
+                    <span>自动清理 <small>扫描失败后直接移除无效认证</small></span>
+                  </label>
+                  <label class="cpamc-auto-field">
+                    <span>间隔</span>
+                    <input type="number" id="cpamc-auto-scan-interval" min="10" max="3600" step="1" />
+                  </label>
+                  <label class="cpamc-auto-field">
+                    <span>线程</span>
+                    <input type="number" id="cpamc-auto-scan-concurrency" min="1" max="10" step="1" />
+                  </label>
+                </div>
+                <div class="cpamc-auto-actions">
+                  <button class="cpamc-btn default" id="btn-refresh-auth">刷新列表</button>
+                  <button class="cpamc-btn success" id="btn-auto-scan-toggle">启动</button>
+                </div>
+              </div>
+              <div class="cpamc-auto-hint" id="cpamc-auto-scan-hint">认证文件会按照设定并发自动检查，可选择是否自动清理异常项。</div>
+            </div>
           </div>
           <div class="cpamc-list" id="list-auth"></div>
         </div>
